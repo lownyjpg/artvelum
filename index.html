@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,12 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ARTVELUM | Sublimación & Más</title>
-<meta name="description" content="ARTVELUM: tazas, poleras, mousepads, termos y regalos personalizados. Tus ideas, en alta definición.">
+<meta name="description" content="ARTVELUM: tazas, mousepads, poleras y regalos personalizados. Tus ideas, en alta definición.">
 
 <style>
 :root {
     --blue: #B000FF;
-    --blue-light: #FF24D8;
+    --pink: #FF24D8;
     --bg: #09070F;
     --panel: #15101F;
     --border: #45204F;
@@ -26,6 +27,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 120px;
 }
 
 body {
@@ -50,72 +52,145 @@ button {
     margin: auto;
 }
 
-/* NAVEGACIÓN */
+/* =========================
+   BARRA DE NAVEGACIÓN
+========================= */
 
 header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(9, 7, 15, 0.96);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(15px);
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1180px, 92%);
+    z-index: 1000;
+
+    background: rgba(15, 9, 24, 0.88);
+    border: 1px solid rgba(176, 0, 255, 0.28);
+    border-radius: 16px;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    transition:
+        width 0.35s ease,
+        top 0.35s ease,
+        border-radius 0.35s ease,
+        background 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
 .navbar {
-    min-height: 78px;
+    min-height: 76px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    padding: 0 20px;
+
+    transition: min-height 0.35s ease, padding 0.35s ease;
 }
 
 .logo {
-    font-size: 1.7rem;
+    font-size: 1.55rem;
     font-weight: 900;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+    transition: font-size 0.35s ease;
 }
 
 .logo span {
-    color: var(--blue-light);
-    text-shadow: 0 0 12px rgba(255, 36, 216, 0.75);
+    color: var(--pink);
+    text-shadow: 0 0 12px rgba(255, 36, 216, 0.8);
 }
 
 .logo small {
     display: block;
-    font-size: 0.58rem;
-    letter-spacing: 5px;
+    font-size: 0.55rem;
+    letter-spacing: 4px;
     color: #D8C7F0;
+    transition: 0.35s ease;
 }
 
 nav {
     display: flex;
-    gap: 28px;
-    font-size: 0.92rem;
+    align-items: center;
+    gap: 27px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: gap 0.35s ease, font-size 0.35s ease;
 }
 
 nav a {
-    transition: color 0.2s;
+    transition: color 0.2s ease;
 }
 
 nav a:hover {
-    color: var(--blue-light);
+    color: var(--pink);
 }
 
 .cart-button {
     background: var(--panel);
     color: white;
     border: 1px solid var(--border);
-    padding: 11px 15px;
+    padding: 10px 14px;
     border-radius: 10px;
-    transition: 0.2s;
+    white-space: nowrap;
+    transition: 0.25s ease;
 }
 
 .cart-button:hover {
-    border-color: var(--blue-light);
-    box-shadow: 0 0 14px rgba(176, 0, 255, 0.2);
+    border-color: var(--pink);
+    box-shadow: 0 0 14px rgba(176, 0, 255, 0.25);
 }
 
-/* PORTADA */
+/* ESTADO COMPACTO AL BAJAR */
+
+header.scrolled {
+    top: 10px;
+    width: min(790px, 94%);
+    border-radius: 14px;
+    background: rgba(9, 7, 15, 0.95);
+    border-color: rgba(255, 36, 216, 0.42);
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(176, 0, 255, 0.12);
+}
+
+header.scrolled .navbar {
+    min-height: 58px;
+    padding: 0 15px;
+    gap: 14px;
+}
+
+header.scrolled .logo {
+    font-size: 1.15rem;
+}
+
+header.scrolled .logo small {
+    font-size: 0.43rem;
+    letter-spacing: 3px;
+}
+
+header.scrolled nav {
+    gap: 18px;
+    font-size: 0.82rem;
+}
+
+header.scrolled .cart-button {
+    padding: 8px 11px;
+    font-size: 0.8rem;
+}
+
+/* ESPACIO PARA LA BARRA FIJA */
+
+body {
+    padding-top: 112px;
+}
+
+/* =========================
+   PORTADA
+========================= */
 
 .hero {
     min-height: 470px;
@@ -123,13 +198,17 @@ nav a:hover {
     align-items: center;
     position: relative;
     overflow: hidden;
+
     background:
-        linear-gradient(90deg,
-        rgba(9,5,15,0.98) 0%,
-        rgba(9,5,15,0.90) 40%,
-        rgba(9,5,15,0.22) 100%),
+        linear-gradient(
+            90deg,
+            rgba(9, 5, 15, 0.98) 0%,
+            rgba(9, 5, 15, 0.86) 45%,
+            rgba(9, 5, 15, 0.28) 100%
+        ),
         url("https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1800&q=85")
         center/cover;
+
     border-bottom: 1px solid var(--border);
 }
 
@@ -139,7 +218,7 @@ nav a:hover {
 }
 
 .eyebrow {
-    color: var(--blue-light);
+    color: var(--pink);
     text-transform: uppercase;
     font-size: 0.78rem;
     font-weight: bold;
@@ -156,7 +235,7 @@ h1 {
 
 h1 span {
     color: var(--blue);
-    text-shadow: 0 0 22px rgba(176, 0, 255, 0.35);
+    text-shadow: 0 0 22px rgba(176, 0, 255, 0.4);
 }
 
 .hero p {
@@ -170,23 +249,26 @@ h1 span {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background: var(--blue);
+
+    background: linear-gradient(110deg, var(--blue), var(--pink));
     color: white;
     padding: 14px 23px;
     border: none;
     border-radius: 10px;
     font-weight: bold;
-    transition: 0.2s;
-    box-shadow: 0 0 18px rgba(176, 0, 255, 0.28);
+
+    box-shadow: 0 0 18px rgba(176, 0, 255, 0.22);
+    transition: 0.25s ease;
 }
 
 .btn:hover {
-    background: #7C00C9;
-    box-shadow: 0 0 24px rgba(255, 36, 216, 0.38);
     transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(255, 36, 216, 0.38);
 }
 
-/* SECCIONES */
+/* =========================
+   SECCIONES
+========================= */
 
 section {
     padding: 45px 0;
@@ -205,16 +287,18 @@ section {
     line-height: 1.2;
 }
 
-.section-header p {
+.section-header > p {
     color: var(--muted);
     font-size: 0.9rem;
 }
 
-/* CATEGORÍAS */
+/* =========================
+   CATEGORÍAS
+========================= */
 
 .categories {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 14px;
 }
 
@@ -223,13 +307,13 @@ section {
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 14px;
-    transition: 0.2s;
+    transition: 0.25s ease;
 }
 
 .category:hover,
 .product:hover {
     transform: translateY(-4px);
-    border-color: var(--blue-light);
+    border-color: var(--pink);
     box-shadow: 0 0 20px rgba(176, 0, 255, 0.12);
 }
 
@@ -250,25 +334,28 @@ section {
 
 .category p {
     font-size: 0.82rem;
-    color: #FF7BE8;
+    color: var(--pink);
 }
 
-/* PRODUCTOS */
+/* =========================
+   PRODUCTOS
+========================= */
 
 .products {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 18px;
 }
 
 .product {
     display: flex;
     flex-direction: column;
+    min-width: 0;
     overflow: hidden;
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 14px;
-    transition: 0.2s;
+    transition: 0.25s ease;
 }
 
 .product img {
@@ -308,19 +395,23 @@ section {
     padding: 12px;
     border: none;
     border-radius: 8px;
-    background: linear-gradient(110deg, var(--blue), var(--blue-light));
+
+    background: linear-gradient(110deg, var(--blue), var(--pink));
     color: white;
     font-weight: bold;
+
     box-shadow: 0 0 14px rgba(176, 0, 255, 0.18);
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 .add-button:hover {
-    background: var(--blue-light);
     box-shadow: 0 0 18px rgba(255, 36, 216, 0.35);
+    filter: brightness(1.12);
 }
 
-/* CARRITO */
+/* =========================
+   CARRITO
+========================= */
 
 .cart-panel {
     display: none;
@@ -344,7 +435,13 @@ section {
     border-bottom: 1px solid var(--border);
 }
 
+.cart-item-name {
+    flex: 1;
+    overflow-wrap: anywhere;
+}
+
 .remove-button {
+    flex-shrink: 0;
     border: 1px solid #69254F;
     color: #FF8AD8;
     background: transparent;
@@ -366,7 +463,20 @@ section {
     color: var(--muted);
 }
 
-/* BENEFICIOS */
+.cart-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.clear-button {
+    background: transparent;
+    border: 1px solid #69258A;
+}
+
+/* =========================
+   BENEFICIOS
+========================= */
 
 .benefits {
     background: #100B18;
@@ -376,7 +486,7 @@ section {
 
 .benefit-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 20px;
 }
 
@@ -391,7 +501,7 @@ section {
 
 .benefit-icon {
     font-size: 2rem;
-    color: var(--blue-light);
+    color: var(--pink);
     margin-bottom: 10px;
     text-shadow: 0 0 12px rgba(255, 36, 216, 0.35);
 }
@@ -402,7 +512,9 @@ section {
     margin-top: 5px;
 }
 
-/* BANNER PERSONALIZADO */
+/* =========================
+   BANNER DE PERSONALIZACIÓN
+========================= */
 
 .custom-banner {
     display: flex;
@@ -410,10 +522,16 @@ section {
     justify-content: space-between;
     gap: 25px;
     padding: 35px;
+
     border: 1px solid #69258A;
     border-radius: 18px;
+
     background:
-        linear-gradient(90deg, rgba(9,7,15,0.97), rgba(9,7,15,0.50)),
+        linear-gradient(
+            90deg,
+            rgba(9, 7, 15, 0.97),
+            rgba(9, 7, 15, 0.50)
+        ),
         url("https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1400&q=80")
         center/cover;
 }
@@ -427,7 +545,9 @@ section {
     margin-top: 8px;
 }
 
-/* PIE DE PÁGINA */
+/* =========================
+   PIE DE PÁGINA
+========================= */
 
 footer {
     padding: 30px 0 20px;
@@ -451,7 +571,7 @@ footer {
 }
 
 .footer-links a:hover {
-    color: var(--blue-light);
+    color: var(--pink);
 }
 
 .copyright {
@@ -462,51 +582,143 @@ footer {
     font-size: 0.78rem;
 }
 
-/* RESPONSIVE */
+/* =========================
+   TABLET
+========================= */
 
 @media (max-width: 950px) {
     .categories {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .products {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .benefit-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    header.scrolled {
+        width: 94%;
+    }
+
+    header.scrolled .navbar {
+        gap: 10px;
+    }
+
+    header.scrolled nav {
+        gap: 12px;
     }
 }
 
+/* =========================
+   MÓVILES
+========================= */
+
 @media (max-width: 600px) {
+    header {
+        top: 8px;
+        width: 96%;
+        border-radius: 13px;
+    }
+
     .navbar {
-        flex-wrap: wrap;
-        padding: 14px 0;
+        min-height: auto;
+        padding: 10px 12px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
     }
 
     .logo {
-        font-size: 1.35rem;
+        font-size: 1.2rem;
+    }
+
+    .logo small {
+        font-size: 0.45rem;
+        letter-spacing: 3px;
+    }
+
+    .cart-button {
+        padding: 8px 10px;
+        font-size: 0.78rem;
     }
 
     nav {
-        order: 3;
-        width: 100%;
+        grid-column: 1 / -1;
+        display: flex;
         justify-content: space-between;
         gap: 8px;
-        font-size: 0.82rem;
+        width: 100%;
+        font-size: 0.78rem;
+        padding-top: 5px;
+    }
+
+    header.scrolled {
+        top: 6px;
+        width: 96%;
+    }
+
+    header.scrolled .navbar {
+        min-height: auto;
+        padding: 8px 10px;
+        gap: 6px;
+    }
+
+    header.scrolled .logo {
+        font-size: 1rem;
+    }
+
+    header.scrolled .logo small {
+        font-size: 0.4rem;
+        letter-spacing: 2.5px;
+    }
+
+    header.scrolled nav {
+        gap: 6px;
+        font-size: 0.72rem;
+        padding-top: 3px;
+    }
+
+    header.scrolled .cart-button {
+        padding: 7px 8px;
+        font-size: 0.72rem;
+    }
+
+    body {
+        padding-top: 125px;
+    }
+
+    html {
+        scroll-padding-top: 145px;
     }
 
     .hero {
-        min-height: 430px;
+        min-height: 420px;
         background-position: 60% center;
     }
 
     .hero-content {
-        padding: 55px 0;
+        padding: 45px 0;
+    }
+
+    h1 {
+        font-size: clamp(2.3rem, 10vw, 3.4rem);
+    }
+
+    section {
+        padding: 32px 0;
+    }
+
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
     }
 
     .categories {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
     }
 
@@ -514,16 +726,20 @@ footer {
         height: 125px;
     }
 
+    .category-info {
+        padding: 10px;
+    }
+
     .products {
         gap: 10px;
     }
 
     .product img {
-        height: 160px;
+        height: 155px;
     }
 
     .product-info {
-        padding: 11px;
+        padding: 10px;
     }
 
     .product h3 {
@@ -534,8 +750,12 @@ footer {
         font-size: 0.76rem;
     }
 
+    .price {
+        font-size: 1.05rem;
+    }
+
     .add-button {
-        font-size: 0.8rem;
+        font-size: 0.76rem;
         padding: 10px 5px;
     }
 
@@ -557,10 +777,28 @@ footer {
         margin-top: 20px;
     }
 
+    .cart-panel {
+        padding: 15px;
+    }
+
+    .cart-item {
+        align-items: flex-start;
+        font-size: 0.84rem;
+    }
+
+    .cart-actions .btn {
+        width: 100%;
+        margin: 0;
+    }
+
     .footer-top,
     .copyright {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .footer-links {
+        gap: 12px;
     }
 }
 </style>
@@ -568,11 +806,11 @@ footer {
 
 <body>
 
-<header>
-    <div class="container navbar">
+<header id="siteHeader">
+    <div class="navbar">
 
         <a class="logo" href="#inicio">
-            <span>▲</span> ARTVELUM
+            <span>✦</span> ARTVELUM
             <small>SUBLIMACIÓN & MÁS</small>
         </a>
 
@@ -583,7 +821,7 @@ footer {
             <a href="#contacto">Contacto</a>
         </nav>
 
-        <button class="cart-button" id="cartButton">
+        <button class="cart-button" id="cartButton" type="button">
             🛒 Carrito (<span id="cartCount">0</span>)
         </button>
 
@@ -713,162 +951,128 @@ footer {
 
         <article class="product"
         data-name="Taza personalizada" data-price="6990">
-
             <img loading="lazy"
             src="https://images.unsplash.com/photo-1514228742587-6b1558feca3d?auto=format&fit=crop&w=700&q=85"
             alt="Taza personalizada">
-
             <div class="product-info">
                 <h3>Taza personalizada</h3>
-                <p class="product-description">
-                    Cerámica con diseño a elección.
-                </p>
+                <p class="product-description">Cerámica con diseño a elección.</p>
                 <div class="price">$6.990</div>
-                <button class="add-button">Agregar al carrito</button>
+                <button class="add-button" type="button">Agregar al carrito</button>
             </div>
         </article>
 
         <article class="product"
         data-name="Mousepad gaming" data-price="8990">
-
             <img loading="lazy"
             src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?auto=format&fit=crop&w=700&q=85"
             alt="Mousepad gaming">
-
             <div class="product-info">
                 <h3>Mousepad gaming</h3>
-                <p class="product-description">
-                    Superficie suave y diseño full color.
-                </p>
+                <p class="product-description">Superficie suave y diseño full color.</p>
                 <div class="price">$8.990</div>
-                <button class="add-button">Agregar al carrito</button>
+                <button class="add-button" type="button">Agregar al carrito</button>
             </div>
         </article>
 
         <article class="product"
         data-name="Polera personalizada" data-price="12990">
-
             <img loading="lazy"
             src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85"
             alt="Polera personalizada">
-
             <div class="product-info">
                 <h3>Polera personalizada</h3>
-                <p class="product-description">
-                    Tu imagen o diseño favorito.
-                </p>
+                <p class="product-description">Tu imagen o diseño favorito.</p>
                 <div class="price">$12.990</div>
-                <button class="add-button">Agregar al carrito</button>
+                <button class="add-button" type="button">Agregar al carrito</button>
             </div>
         </article>
 
         <article class="product"
         data-name="Polerón estampado" data-price="16990">
-
             <img loading="lazy"
             src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85"
             alt="Polerón estampado">
-
             <div class="product-info">
                 <h3>Polerón estampado</h3>
-                <p class="product-description">
-                    Comodidad y estilo personalizado.
-                </p>
+                <p class="product-description">Comodidad y estilo personalizado.</p>
                 <div class="price">$16.990</div>
-                <button class="add-button">Agregar al carrito</button>
+                <button class="add-button" type="button">Agregar al carrito</button>
             </div>
         </article>
 
         <article class="product"
         data-name="Termo personalizado" data-price="10990">
-
             <img loading="lazy"
             src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=700&q=85"
             alt="Termo personalizado">
-
             <div class="product-info">
                 <h3>Termo personalizado</h3>
-                <p class="product-description">
-                    Ideal para llevar a todas partes.
-                </p>
+                <p class="product-description">Ideal para llevar a todas partes.</p>
                 <div class="price">$10.990</div>
-                <button class="add-button">Agregar al carrito</button>
+                <button class="add-button" type="button">Agregar al carrito</button>
             </div>
         </article>
 
         <article class="product"
         data-name="Cojín personalizado" data-price="9990">
-
             <img loading="lazy"
             src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=700&q=85"
             alt="Cojín personalizado">
-
             <div class="product-info">
                 <h3>Cojín personalizado</h3>
-                <p class="product-description">
-                    Un regalo especial para tu hogar.
-                </p>
+                <p class="product-description">Un regalo especial para tu hogar.</p>
                 <div class="price">$9.990</div>
-                <button class="add-button">Agregar al carrito</button>
+                <button class="add-button" type="button">Agregar al carrito</button>
             </div>
         </article>
 
         <article class="product"
         data-name="Tazón especial" data-price="7990">
-
             <img loading="lazy"
             src="https://images.unsplash.com/photo-1577937927133-66ef06acdf18?auto=format&fit=crop&w=700&q=85"
             alt="Tazón de cerámica">
-
             <div class="product-info">
                 <h3>Tazón especial</h3>
-                <p class="product-description">
-                    Personalizado con foto o ilustración.
-                </p>
+                <p class="product-description">Personalizado con foto o ilustración.</p>
                 <div class="price">$7.990</div>
-                <button class="add-button">Agregar al carrito</button>
+                <button class="add-button" type="button">Agregar al carrito</button>
             </div>
         </article>
 
         <article class="product"
         data-name="Botella deportiva" data-price="8990">
-
             <img loading="lazy"
             src="https://images.unsplash.com/photo-1523362628745-0c100150b5c4?auto=format&fit=crop&w=700&q=85"
             alt="Botella deportiva">
-
             <div class="product-info">
                 <h3>Botella deportiva</h3>
-                <p class="product-description">
-                    Personaliza colores y diseño.
-                </p>
+                <p class="product-description">Personaliza colores y diseño.</p>
                 <div class="price">$8.990</div>
-                <button class="add-button">Agregar al carrito</button>
+                <button class="add-button" type="button">Agregar al carrito</button>
             </div>
         </article>
 
     </div>
 
-    <!-- CARRITO DE COMPRAS -->
+    <!-- CARRITO -->
 
     <div class="cart-panel" id="cartPanel">
         <h3>Tu carrito</h3>
 
         <div id="cartItems"></div>
 
-        <div class="cart-total" id="cartTotal">
-            Total: $0
+        <div class="cart-total" id="cartTotal">Total: $0</div>
+
+        <div class="cart-actions">
+            <button class="btn" id="checkoutButton" type="button">
+                PEDIR POR WHATSAPP →
+            </button>
+
+            <button class="btn clear-button" id="clearCartButton" type="button">
+                Vaciar carrito
+            </button>
         </div>
-
-        <button class="btn" id="checkoutButton">
-            CONSULTAR PEDIDO POR WHATSAPP →
-        </button>
-
-        <button class="btn"
-        id="clearCartButton"
-        style="background:transparent;border:1px solid #69258A;margin-left:8px;">
-            Vaciar carrito
-        </button>
     </div>
 
 </section>
@@ -915,10 +1119,9 @@ footer {
     </div>
 </section>
 
-<!-- PERSONALIZACIÓN Y CONTACTO -->
+<!-- CONTACTO -->
 
 <section class="container" id="contacto">
-
     <div class="custom-banner">
 
         <div>
@@ -927,25 +1130,23 @@ footer {
             <p>Cuéntanos tu idea y creemos algo especial.</p>
         </div>
 
-        <a href="#" class="btn" id="whatsappContact" target="_blank"
-        rel="noopener">
+        <a href="#" class="btn" id="whatsappContact">
             COTIZAR POR WHATSAPP →
         </a>
 
     </div>
-
 </section>
 
 </main>
 
-<!-- FOOTER -->
+<!-- PIE DE PÁGINA -->
 
 <footer class="container">
 
     <div class="footer-top">
 
         <a class="logo" href="#inicio">
-            <span>▲</span> ARTVELUM
+            <span>✦</span> ARTVELUM
             <small>SUBLIMACIÓN & MÁS</small>
         </a>
 
@@ -954,8 +1155,7 @@ footer {
             <a href="#tienda">Tienda</a>
             <a href="#nosotros">Nosotros</a>
             <a href="#contacto">Contacto</a>
-            <a href="https://instagram.com/" target="_blank"
-            rel="noopener">Instagram ↗</a>
+            <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram ↗</a>
         </div>
 
     </div>
@@ -968,22 +1168,33 @@ footer {
 </footer>
 
 <script>
-/* ==========================================
-   CONFIGURACIÓN DE LA TIENDA
-   ========================================== */
+/* =========================
+   CONFIGURACIÓN
+========================= */
 
 /*
-   IMPORTANTE:
-   Reemplaza el número de abajo por tu WhatsApp.
-   Incluye código de país, sin +, espacios ni guiones.
-   Ejemplo de Chile: 56912345678
+  Reemplaza el número de ejemplo por tu WhatsApp real.
+  Chile: código 56 + número, sin +, espacios ni guiones.
 */
 
 const WHATSAPP_NUMBER = "56912345678";
 
-/* ==========================================
+/* =========================
+   BARRA COMPACTA AL BAJAR
+========================= */
+
+const header = document.getElementById("siteHeader");
+
+function updateHeader() {
+    header.classList.toggle("scrolled", window.scrollY > 50);
+}
+
+window.addEventListener("scroll", updateHeader, { passive: true });
+updateHeader();
+
+/* =========================
    CARRITO
-   ========================================== */
+========================= */
 
 let cart = [];
 
@@ -1005,8 +1216,10 @@ function updateCart() {
     cartItems.innerHTML = "";
 
     if (cart.length === 0) {
-        cartItems.innerHTML =
-            '<p class="empty-cart">Tu carrito está vacío.</p>';
+        const empty = document.createElement("p");
+        empty.className = "empty-cart";
+        empty.textContent = "Tu carrito está vacío.";
+        cartItems.appendChild(empty);
     }
 
     cart.forEach((item, index) => {
@@ -1014,12 +1227,14 @@ function updateCart() {
         row.className = "cart-item";
 
         const details = document.createElement("span");
+        details.className = "cart-item-name";
         details.textContent =
             `${item.name} × ${item.quantity} — ` +
             formatPrice(item.price * item.quantity);
 
         const remove = document.createElement("button");
         remove.className = "remove-button";
+        remove.type = "button";
         remove.textContent = "Eliminar";
 
         remove.addEventListener("click", () => {
@@ -1038,6 +1253,8 @@ function updateCart() {
 
     cartTotal.textContent = "Total: " + formatPrice(total);
 }
+
+/* AGREGAR PRODUCTOS */
 
 document.querySelectorAll(".add-button").forEach(button => {
     button.addEventListener("click", () => {
@@ -1067,15 +1284,22 @@ document.querySelectorAll(".add-button").forEach(button => {
     });
 });
 
-cartButton.addEventListener("click", () => {
-    cartPanel.style.display =
-        cartPanel.style.display === "block" ? "none" : "block";
+/* ABRIR Y CERRAR CARRITO */
 
-    cartPanel.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-    });
+cartButton.addEventListener("click", () => {
+    const isVisible = cartPanel.style.display === "block";
+
+    cartPanel.style.display = isVisible ? "none" : "block";
+
+    if (!isVisible) {
+        cartPanel.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    }
 });
+
+/* VACIAR CARRITO */
 
 document.getElementById("clearCartButton")
 .addEventListener("click", () => {
@@ -1083,15 +1307,18 @@ document.getElementById("clearCartButton")
     updateCart();
 });
 
-/* ==========================================
-   PEDIDOS POR WHATSAPP
-   ========================================== */
+/* =========================
+   WHATSAPP
+========================= */
 
 function sendWhatsApp(message) {
-    if (WHATSAPP_NUMBER === "56912345678") {
+    if (
+        !WHATSAPP_NUMBER ||
+        WHATSAPP_NUMBER === "56912345678"
+    ) {
         alert(
-            "Antes de recibir pedidos, reemplaza WHATSAPP_NUMBER " +
-            "en el código por tu número real."
+            "Configura tu número real de WhatsApp en la variable " +
+            "WHATSAPP_NUMBER al final del código."
         );
         return;
     }
@@ -1100,8 +1327,10 @@ function sendWhatsApp(message) {
         "https://wa.me/" + WHATSAPP_NUMBER +
         "?text=" + encodeURIComponent(message);
 
-    window.open(url, "_blank", "noopener");
+    window.open(url, "_blank", "noopener,noreferrer");
 }
+
+/* CONFIRMAR PEDIDO */
 
 document.getElementById("checkoutButton")
 .addEventListener("click", () => {
@@ -1110,7 +1339,8 @@ document.getElementById("checkoutButton")
         return;
     }
 
-    let message = "¡Hola Artvelum! Quiero consultar por este pedido:\n\n";
+    let message =
+        "¡Hola Artvelum! Quiero consultar por este pedido:\n\n";
 
     cart.forEach(item => {
         message +=
@@ -1124,10 +1354,13 @@ document.getElementById("checkoutButton")
     );
 
     message += "\nTotal referencial: " + formatPrice(total);
-    message += "\n\nQuisiera confirmar disponibilidad, personalización y envío.";
+    message +=
+        "\n\nQuisiera confirmar disponibilidad, personalización y envío.";
 
     sendWhatsApp(message);
 });
+
+/* CONSULTAS Y COTIZACIONES */
 
 document.getElementById("whatsappContact")
 .addEventListener("click", event => {
@@ -1143,8 +1376,11 @@ document.getElementById("whatsappContact")
 document.getElementById("year").textContent =
     new Date().getFullYear();
 
+/* INICIALIZAR */
+
 updateCart();
 </script>
 
 </body>
 </html>
+```
